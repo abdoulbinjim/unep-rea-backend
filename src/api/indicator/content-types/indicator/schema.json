@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "indicators",
+  "info": {
+    "singularName": "indicator",
+    "pluralName": "indicators",
+    "displayName": "Indicator"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "sdg_goal": {
+      "type": "integer"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "current_value": {
+      "type": "integer"
+    },
+    "last_updated": {
+      "type": "datetime"
+    }
+  }
+}

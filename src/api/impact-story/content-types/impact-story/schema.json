@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "impact_stories",
+  "info": {
+    "singularName": "impact-story",
+    "pluralName": "impact-stories",
+    "displayName": "Impact Story"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "body": {
+      "type": "blocks"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tags": {
+      "type": "string"
+    }
+  }
+}
