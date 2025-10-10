@@ -1,21 +1,21 @@
-const strapi = require ("@strapi/strapi");
-strapi().load().then(async(app) => {
-    const adminEmail = "abdulqudusjmh@gmail.com";
-    const newPassword = "yeatAJ2093$";
+(async () => {
+    const { createStrapi } = require('@strapi/strapi');
+    const strapi = await createStrapi();
+    await strapi.start();
 
-    try {
-        const user = await app.query("admin::user").findOne({ where: { email: adminEmail } });
-        if (user) {    
-            await app.query("admin::user").update({
-                where: { email: adminEmail },
-                data: { password: await strapi.service("admin::auth").hashPassword(newPassword) },
-            });
-            console.log("Password reset successful!");
-        } else {
-            console.log("Admin not found - Create a new one via the /admin page");
-        }
-    } catch (err) {
-        console.error("Error resetting password:", err);
+    const email = 'abdulqudusjmh@gmail.com';
+    const password = 'yeatAJ2093$$$'
+
+    const adminService = strapi.service('admin::user');
+    const existing = await adminService.findOneByEmail(email);
+
+    if (!existing) {
+        console.log('[reset-admin] No admin with that email. Nothing to reset.');
+    } else {
+        await adminService.edit(existing.id, { password });
+        console.log('[reset-admin] Password reset SUCCESS for', email);
     }
+
+    await strapi.server.httpServer.close();
     process.exit(0);
-});
+})();
